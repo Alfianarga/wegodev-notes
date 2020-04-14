@@ -20,11 +20,7 @@
 
     export default {
         name: 'formNotes',
-        props: {
-            propSaveNote : {
-                type: Function
-            }
-        },
+        props: {},
         data: function () {
             return {
                 id: 0,
@@ -42,7 +38,7 @@
                 }
 
                 if(this.id === 0){
-                    this.propSaveNote(this.title, this.description);
+                    this.$root.$emit('emitSaveNote', data);
                 }else{
                     data.id = this.id;
                     this.$root.$emit('emitUpdateNote', data);

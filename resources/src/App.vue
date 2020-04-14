@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="kanan">
-          <formNotes :propSaveNote="saveNote"/>
+          <formNotes/>
     </div>
   </div>
 </template>
@@ -38,20 +38,9 @@ export default {
   },
   methods: {
        newNote(){
-            this.dataForm = {id:0, title : '', description: ''};
-       },
-       saveNote(title, description){
-            let newId = 0;
+            let dataForm = {id:0, title : '', description: ''};
 
-            if(this.notes.length === 0){
-                 newId = 1;
-            } else {
-                 newId = this.notes[this.notes.length - 1].id + 1;
-            }
-
-            let newNote = { id:newId, 'title' : title, 'description' : description }
-               this.notes.push(newNote);
-               this.editNote(newId);
+            this.$root.$emit('emitForm', dataForm);
        }
   }
 }
