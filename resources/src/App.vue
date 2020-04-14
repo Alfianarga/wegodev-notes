@@ -11,11 +11,11 @@
         <button @click="newNote" class="bg-success btn btn-new-note">
           +Note Baru
         </button>
-        <ListNotes :propNotes="notes" :propEditNote="editNote"/>
+        <ListNotes/>
       </div>
     </div>
     <div class="kanan">
-          <formNotes :propRemoveNote="removeNote" :propSaveNote="saveNote" :propUpdateNote="updateNote" :propDataForm="dataForm"/>
+          <formNotes/>
     </div>
   </div>
 </template>
@@ -28,11 +28,8 @@ export default {
   name: 'App',
   data: function () {
             return {
-                dataForm: {},
-                notes : [
-                    {id:1, title: 'alfian',description: 'ini isi alfian'},
-                    {id:2, title: 'super user',description: 'ini isi super user'}
-                ]
+                dataForm: {}
+                
             }
         },
   components: {
@@ -41,33 +38,9 @@ export default {
   },
   methods: {
        newNote(){
-            this.dataForm = {id:0, title : '', description: '', mode: 'save'};
-       },
-       editNote(id){
-            this.dataForm = this.notes.find(note => note.id === id);
-            this.dataForm.mode = 'update';
-       },
-       saveNote(title, description){
-            let newId = 0;
+            let dataForm = {id:0, title : '', description: '',mode: 'save'};
 
-            if(this.notes.length === 0){
-                 newId = 1;
-            } else {
-                 newId = this.notes[this.notes.length - 1].id + 1;
-            }
-
-            let newNote = { id:newId, 'title' : title, 'description' : description }
-               this.notes.push(newNote);
-               this.editNote(newId);
-       },
-       updateNote(id, title, description){
-            let noteIndex = this.notes.findIndex(note => note.id === id);
-               this.notes[noteIndex].title = title;
-               this.notes[noteIndex].description = description;
-       },
-       removeNote(id){
-            let noteIndex = this.notes.findIndex(note => note.id === id);
-            this.notes.splice(noteIndex, 1);
+            this.$root.$emit('emitForm', dataForm);
        }
   }
 }
