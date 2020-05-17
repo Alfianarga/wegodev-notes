@@ -29,7 +29,7 @@
                 this.$root.$emit('emitForm', dataForm)
             },
             getData(){
-                axios.get(process.env.VUE_APP_BASE_URL+'/api/notes').then(response => {
+                axios.get('/api/notes').then(response => {
                     console.log(response);
                     this.notes = response.data;
                 });
