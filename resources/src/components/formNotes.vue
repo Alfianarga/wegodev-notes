@@ -39,7 +39,7 @@
                 params.append('title', this.title);
                 params.append('description', this.description);
 
-                axios.post('http://localhost/wegodev-notes/note/create', params).then(response => {
+                axios.post('http://notes.wegodev/api/notes', params).then(response => {
                     let data = {
                     id : response.data.id,
                     title : this.title,
@@ -54,7 +54,7 @@
                 params.append('title', this.title);
                 params.append('description', this.description);
 
-                axios.post('http://localhost/wegodev-notes/note/update', params).then(response => {
+                axios.put('http://notes.wegodev/api/notes/'+this.id, params).then(response => {
                     let data = {
                     id : response.data.id,
                     title : this.title,
@@ -67,7 +67,7 @@
                 let params = new URLSearchParams();
                 params.append('id', this.id);
 
-                axios.post('http://localhost/wegodev-notes/note/delete', params).then(response => {
+                axios.delete('http://notes.wegodev/api/notes/'+this.id, params).then(response => {
                     let data = {
                     id : response.data.id
                 }

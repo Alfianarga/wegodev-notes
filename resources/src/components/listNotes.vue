@@ -29,7 +29,7 @@
                 this.$root.$emit('emitForm', dataForm)
             },
             getData(){
-                axios.get('http://localhost/wegodev-notes/note').then(response => {
+                axios.get('http://notes.wegodev/api/notes').then(response => {
                     console.log(response);
                     this.notes = response.data;
                 });
